@@ -23,11 +23,27 @@ class MovieController extends Controller
 
         $movie->save();
 
-        return redirect('/');
+        return redirect('/filmes');
     }
 
     public function filmes(){
         $movies = Movie::all();
         return view('movies', ['movies' => $movies]);
+    }
+    public function show($id){
+        $movie = Movie::findOrFail($id);
+        return view('movies.show', ['movie' => $movie]);
+    }
+    public function destroy($id){
+        Movie::findOrFail($id)->delete();
+        return redirect('/filmes');
+    }
+    public function edit($id){
+        $movie = Movie::findOrFail($id);
+        return view('movies.edit', ['movie' => $movie]);
+    }
+    public function update(Request $request){
+        Movie::findOrFail($request->id)->update($request->all());
+        return redirect('/filmes');
     }
 }

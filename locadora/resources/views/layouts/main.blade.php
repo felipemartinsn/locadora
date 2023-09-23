@@ -22,10 +22,13 @@
                     <li class="navbar-item">
                         <a href="/filmes/" class="nav-link">Filmes</a>
                     </li>
+                   
                     <li class="navbar-item">
                         <a href="/filmes/create" class="nav-link">Adicionar Filme</a>
                     </li>
-                </ul>
+                   
+                   
+                    </ul>
                 </div>
             </nav>
         </header>
@@ -33,6 +36,6 @@
 
         @yield('content')
         <footer class="footer">
-            <p>locadora de veiculos &copy; 2023</p>
+            <p>locadora de filmes &copy; 2023</p>
         </footer>
 </html>
