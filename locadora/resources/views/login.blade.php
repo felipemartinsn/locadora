@@ -3,71 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
-
-    <style>
-        body {
-            background-color: rgb(0, 0, 0);
-        }
-
-        .formulario {
-
-            background-color: rgb(234, 234, 234);
-            box-shadow: 2px 2px 2px gray ;
-            padding: 20px;
-            margin: 50px auto;
-
-            text-align: center;
-            height: 600px;
-            width: 200px;
-            border-radius: 20px;
-
-        }
-        
-        .input-logs {
-
-            display: table-column;
-        }
-    </style>
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+        <!-- css da aplicacao -->
+        <link href="/css/login.css" rel ="stylesheet">
+        <!-- css bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
+
 <body>
 
-    @auth
-        <p>Parabens tu ta entrado.</p>
-    
-        <form action="/logout" method="POST">
-            @csrf
-            <button>Log out</button>
-        </form>
-   
-    @else
-
-
-     <div class="formulario">
+     <div class="col-md-6 offset-md-3">
          
-            <div>
-            <h2>Login</h2>
-            <form action="/login" method="POST" class="inputlogs">
-         
+         <h2>Login</h2>
+    <div class="login">
+    <form action="/login" method="POST" class="inputlogs">
                 @csrf
-                <input name="loginemail" type="text" placeholder="Email" >
-                <input name="loginpassword" type="text" placeholder="Senha">
-                <button>Login</button>
-            </form>
+            <div class="form-group">
+                    <label for="title">E-mail:</label>
+                    <input type="text" class="form-control" name="loginemail" placeholder="E-mail">
+            </div>
+                
+        <div class="form-group">
+                    <label for="title">Senha:</label>
+                    <input type="text" class="form-control" name="loginpassword" placeholder="Senha">
+        </div>
+        
+        <input type="submit" class="btn btn-primary" value="Login">
+        
+    </form>
+    <form action="/gotore" method="POST">
+        @csrf
+        <input type="submit" class="btn btn-primary" value="Ainda não me registrei">
 
-            <form action="/gotore" method="POST">
-                @csrf
-                <button>Ainda não me registrei</button>
+    </form>
 
-            </form>
-            </div>           
-            
-             
+    </div>             
      </div>
-
-    @endauth
-
- 
 
 </body>
 </html>

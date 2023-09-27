@@ -4,47 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Movies</title>
+    <title>Cadastrar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+        <!-- css da aplicacao -->
+        <link href="/css/login.css" rel ="stylesheet">
+        <!-- css bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-
-
-<style>
-    body {
-        background-color: rgb(0, 0, 0);
-    }
-    .formulario {
-        background-color: rgb(234, 234, 234);
-        box-shadow: 2px 2px 2px gray ;
-        padding: 20px;
-        margin: 50px auto;
-        text-align: center;
-        height: 600px;
-        width: 200px;
-        border-radius: 20px;
-    }
-    
-    .input-logs {
-        display: table-column;
-    }
-</style>
 
 <body>
 
-<div >
 
 
-        <div class="formulario">
+        <div class="col-md-6 offset-md-3">
             <h2>Cadastrar</h2>
-            <form action="/cadastro" method="POST" class="inputlogs">
+            <div class="login">
 
-                @csrf
-                <input name="name" type="text" placeholder="Nome" >
-                <input name="email" type="text" placeholder="Email" >
-                <input name="password" type="text" placeholder="Senha">
-                <button>Cadastro</button>
-            </form>
+                <form action="/cadastro" method="POST" class="inputlogs">
+                    
+                    @csrf
+                    <div class="form-group">
+                        <label for="title">Nome:</label>
+                        <input name="name"  class="form-control" type="text" placeholder="Nome" >
+                    </div>
+                    <div class="form-group">
+                        <label for="title">E-mail:</label>
+                        <input name="email"  class="form-control" type="text" placeholder="Email" >
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Senha:</label>
+                        <input name="password"  class="form-control" type="text" placeholder="Senha">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Cadastro">
+                </form>
+            </div>
         </div>
-</div>
 
 
 </body>

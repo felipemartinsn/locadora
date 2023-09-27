@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Movie;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
@@ -11,6 +13,7 @@ class MovieController extends Controller
         $movies = Movie::all();
         return view('home', ['movies' => $movies]);
     }
+    
     public function create(){
         return view('movies.create');
     }
@@ -26,22 +29,72 @@ class MovieController extends Controller
         return redirect('/filmes');
     }
 
+    public function alugar($id){
+
+        $user = auth()->user();
+        $movie = Movie::findOrFail($id);
+
+        if($user->id_filme == NULL && $movie->alugado == 0){
+            
+            $movie->alugado = 1;
+            $movie->save();
+            $user->id_filme = $id;
+            $user->save();
+
+            return redirect('/filmes');
+        
+        }
+
+        return redirect('/filmes');
+    }
+
+    public function devolver(){
+
+        $user = auth()->user();
+        if($user->id_filme != NULL){
+
+            $movie = Movie::findOrFail($user->id_filme);
+            $movie->alugado = 0;
+            $movie->save();
+            $user->id_filme = NULL;
+            $user->save();
+
+        }
+
+        return redirect('/filmes');
+    }
+
     public function filmes(){
+        
         $movies = Movie::all();
         return view('movies', ['movies' => $movies]);
     }
+
+
     public function show($id){
         $movie = Movie::findOrFail($id);
         return view('movies.show', ['movie' => $movie]);
     }
+
+
     public function destroy($id){
-        Movie::findOrFail($id)->delete();
+        
+        $movie = Movie::findOrFail($id);
+        if(!$movie->alugado) {
+            $movie->delete();
+        }
+        
+        
         return redirect('/filmes');
     }
+
+
     public function edit($id){
         $movie = Movie::findOrFail($id);
         return view('movies.edit', ['movie' => $movie]);
     }
+
+
     public function update(Request $request){
         Movie::findOrFail($request->id)->update($request->all());
         return redirect('/filmes');

@@ -5,7 +5,7 @@
 @section('content')
 
 <div id="movie-create-container" class="col-md-6 offset-md-3">
-    <h1>Adicione o filme</h1>
+    <h2>Adicione o filme</h2>
     <form action="/filmes" method="POST">
         @csrf
         <div class="form-group">
